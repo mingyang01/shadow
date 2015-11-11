@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href='/vendor/jsoneditor/dist/jsoneditor.min.css')
+  link(rel='stylesheet', href="/css/shadow.css") 
+  link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+  script(src="/vendor/moment/min/moment.min.js")
+  script(src="/vendor/sortable.js")
+  script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+  script(src="/vendor/shadow.js")
+  script(src="/js/plugins/datetimepicker.js")
+  script(src="/vendor/jsoneditor/dist/jsoneditor.min.js")
+  script(src="/vendor/ace/ace.js")
+  .container
+    .row
+      .col-md-12
+        ol.breadcrumb
+          li
+            a(href="#")
+              | home
+          li.active
+            | 编辑示例
+      .col-md-12
+        .alert.alert-info
+          | 请再下面的编辑器填写 
+          i #{code} 
+          对应的json，并保存
+          button#save-json.btn.btn-default.btn-sm.pull-right
+            | 保存
+      .col-md-12
+        #editor(style="min-height:500px;font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;") 
+  script.
+    var tpl = "#{schema}";
+    var id = "#{id}";
+  script(src="/js/source/edit.js")

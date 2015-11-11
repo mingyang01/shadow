@@ -1,0 +1,79 @@
+extends /../layout
+
+block content
+  link(rel='stylesheet', href='/vendor/jsoneditor/dist/jsoneditor.min.css')
+  //- link(rel='stylesheet', href="/vendor/select2/dist/css/select2.min.css")  
+  //- script(src="/vendor/select2/dist/js/select2.min.js")
+  link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+  script(src="/vendor/moment/min/moment.min.js")
+  script(src="/vendor/sortable.js")
+  script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+  script(src="/vendor/shadow.js")
+  script(src="/vendor/jsoneditor/dist/jsoneditor.min.js")
+  script(src="/vendor/ace/ace.js")
+
+  style.
+    button {
+      //- border-radius: 0px !important;
+      //- border: 0px;
+
+      //- margin-left: 4px !important;
+      //- color: white;
+    }
+
+
+    [data-schematype="object"]  h3, [data-schematype="array"] h3{
+      background-color: #FF7373;
+      color: white;
+      line-height: 40px;
+      height: 40px;
+      margin-left: -10px;
+      padding-left: 10px;
+    }
+
+    [data-schematype="object"] h3 > .btn-group, [data-schematype="array"] h3 > .btn-group {
+      height: 100%;
+      float: right;
+    }
+
+    [data-schematype="object"] h3 > .btn-group button{
+      height: 100%;
+      border: 0px;
+      background-color: transparent;
+      color: white;
+    }
+
+    [data-schematype="object"] h3 > .btn-group button:focus, [data-schematype="object"] h3 > .btn-group button:hover, 
+    [data-schematype="object"] h3 > .btn-group button:active:focus{
+      background-color: transparent;
+      color:white;
+    }
+    .well {
+      background-color: white !important;
+      border-radius:0px;
+    }
+
+    img {
+      width: 226px;
+      //- height: 339px;
+    }
+
+  .container-fluid
+    .row
+      .col-md-7
+        h3 Schema
+          button#update-schema.btn.btn-default.btn-sm.pull-right
+            i.glyphicon.glyphicon-refresh
+        #editor(style="min-height:500px;font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;")  
+        h3 JSON Output
+          button#update-form.btn.btn-default.btn-sm.pull-right
+            i.glyphicon.glyphicon-refresh
+        #model(style="height:500px;font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;")
+      .col-md-5
+        h3 Preview
+          button#full-screen.btn.btn-default.pull-right.btn-sm
+            i.glyphicon.glyphicon-fullscreen
+        #preview
+  script.
+    var tpl = "#{schema}"
+  script(src="/js/schema.js")

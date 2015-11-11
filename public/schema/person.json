@@ -1,0 +1,121 @@
+{
+    "title": "员工",
+    "type": "object",
+    "options": {
+        "disable_collapse": false
+    },
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "姓名",
+            "description": "示例：字符串长度限制, 限制大于4个字符",
+            "minLength": 4,
+            "default": "Chao Liu"
+        },
+        "age": {
+            "type": "integer",
+            "title": "年龄",
+            "description": "示例：数字大小范围限制, 18-99",
+            "default": 25,
+            "minimum": 18,
+            "maximum": 99
+        },
+        "image": {
+            "type": "string",
+            "title": "头像",
+            "description": "示例：上传图片",
+            "format": "url",
+            "options": {
+                "upload": true
+            }, 
+            "links": {
+              "href": "{{self}}"
+            }
+        },
+        "birthday": {
+            "type": "date",
+            "title": "生日",
+            "description": "示例：日期控件 YYYY-MM-DD HH:mm:SS",
+            "default": "2015-10-22",
+            "options": {
+                "format": "YYYY-MM-DD"
+            }
+        },
+        "gender": {
+            "title": "性别",
+            "type": "string",
+            "description": "示例：枚举多选",
+            "options": {
+                "enum_titles": ["男", "女"]
+            },
+            "enum": [
+                "male",
+                "female"
+            ]
+        },
+        "location": {
+            "type": "object",
+            "title": "办公地址",
+            "options": {
+                "disable_collapse": false
+            },
+            "properties": {
+                "city": {
+                    "type": "string",
+                    "title": "城市",
+                    "default": "北京",
+                    "enum": [
+                        "北京",
+                        "上海",
+                        "杭州",
+                        "广州"
+                    ]
+                },
+                "state": {
+                    "title": "国家",
+                    "type": "string",
+                    "default": "中国"
+                },
+                "citystate": {
+                    "type": "string",
+                    "description": "示例: 自定义数据模板",
+                    "template": "{{city}}, {{state}}",
+                    "watch": {
+                        "city": "location.city",
+                        "state": "location.state"
+                    }
+                }
+            }
+        },
+        "pets": {
+            "type": "array",
+            "format": "table",
+            "title": "宠物",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "title": "Pet",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "cat",
+                            "dog",
+                            "bird",
+                            "reptile",
+                            "other"
+                        ],
+                        "default": "dog"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "default": [{
+                "type": "dog",
+                "name": "Walter"
+            }]
+        }
+    }
+}

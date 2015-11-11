@@ -1,0 +1,6 @@
+{
+	"PORT"				: 3000,
+	"SPEED_APPKEY"		: 100011,
+	"SPEED_APPSECRET"	: "4440f0f9527b3217ebe15009d6dae348",
+	"SERVER_ONLINE"		: true
+}

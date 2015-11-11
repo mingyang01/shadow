@@ -1,0 +1,126 @@
+extends ../layout
+
+block content
+	link(href="/vendor/select2/dist/css/select2.min.css" rel="stylesheet")
+	link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+	link(rel='stylesheet', href="/vendor/select2/dist/css/select2.min.css")
+	script(src="/vendor/moment/min/moment.min.js")
+	script(src="/vendor/sortable.js")
+	script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+	script(type='text/javascript', src="/vendor/select2/dist/js/select2.min.js")
+	script(src="/vendor/shadow.js")
+	script(src="/js/plugins/datetimepicker.js")
+	script(src="/vendor/jsoneditor/dist/jsoneditor.min.js")
+	script(src="/vendor/ace/ace.js")
+	script(src="/js/source/jqPaginator.js")
+	script(src="/js/plugins/switch-btn/js/bootstrap-switch.min.js")
+	link(rel='stylesheet', href="/js/plugins/switch-btn/css/bootstrap3/bootstrap-switch.min.css")
+	style.
+		#alert-wramp,#add-wramp,.wamp,#main{
+			min-height:400px;
+		}
+		blockquote{
+			width:300px;
+			border-left:5px solid #99CCCC;
+		}
+	.container
+		.row
+			.col-md-12
+				ol.breadcrumb
+					li
+						a(href="#")
+							| home
+					li.active
+						| 创建模板
+			.col-md-12
+				.well.clearfix
+					.col-md-8
+						.form-inline
+							input#code-in.form-control(style="width:380px;margin-right:20px;" value="#{code}")
+							button#serch-btn.btn.btn-success
+								| 查询
+			.col-md-12#data-wramp
+				.alert.alert-info.col-md-12
+					h4.pull-left
+						i.glyphicon.glyphicon-hand-right(style="margin-right:10px;")
+						span.show-num
+					button#auth-btn.btn.btn-warning.pull-right(style="margin-top:0px;",type="button",data-toggle="modal",data-target="#myModal")
+						| 授权
+					button#add-btn.btn.btn-info.pull-right(style="margin-top:0px;margin-right:10px;")
+						| 添加
+				#preview-alert(style="display:none;")
+					.alert.alert-danger
+				.wamp
+					table.table.table-bordered
+						thead
+							tr
+								th.col-md-1
+									i.glyphicon.glyphicon-tags
+									span(style="padding-left:10px;")
+										| id
+								if multiple==1
+								else
+									th.col-md-2
+										| 开始时间
+									th.col-md-2
+										| 结束时间
+								th.col-md-1
+									| 操作人
+								th.col-md-2
+									| 更新时间
+								if multiple==1
+									th.col-md-1
+										| 状态
+								th.col-md-1
+									| 预览状态
+								th.col-md-2.text-center
+									| 操作
+							tr
+						tbody#table
+				.col-md-12.text-center
+					ul#pagination1.pagination
+			.col-md-12#alert-wramp(style="display:none;")
+					.alert.alert-danger
+						| 请输入你获得的code进行查询
+			.col-md-12#add-wramp(style="display:none;")
+				blockquote(style="width:600px;")
+					label
+						| 开始结束时间
+					ul.list-inline
+						li
+							input#start_time.picker.form-control
+						li
+							input#end_time.picker.form-control
+				blockquote.clearfix
+					ul.list-inline
+						li.col-md-9
+							button#save-btn.btn.btn-success.btn-block
+								| 保存
+						li.col-md-3
+							button#return-btn.btn.btn-default.btn-block
+								| 关闭
+			#myModal.modal.fade.bs-example-modal-lg(tabindex="-1", sytle="display:none", role="dialog", aria-labelledby="myModalLabel")
+				.modal-dialog.modal-lg(role="document")
+					.modal-content
+						.modal-header
+							button.close(type="button", data-dismiss="modal", aria-label="Close")
+								span(aria-hidden="true") &#215;
+							h4#myModalLabel.modal-title 添加
+						.modal-body.clearfix
+								label.control-label(for="power") 授权人
+								input#power.form-control(type="text", placeholder="邮箱前缀，多个人用英文逗号隔开" ,value="#{power}")
+							hr
+						.modal-footer
+							button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+							button#power-btn.btn.btn-primary(type="button") 保存
+			include ../common/alert
+			include ../common/delete-alert
+	script.
+		var flag = "#{flag}"
+		var code = "#{code}"
+		var page = "#{page}"
+		var multiple = "#{multiple}"
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	script(src = "/js/template/index.js")

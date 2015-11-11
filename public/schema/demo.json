@@ -1,0 +1,18 @@
+{
+    "name": "Chao Liu",
+    "age": 25,
+    "image": "",
+    "birthday": "2015-10-22",
+    "gender": "male",
+    "location": {
+        "city": "北京",
+        "state": "中国",
+        "citystate": "北京, 中国"
+    },
+    "pets": [
+        {
+            "type": "dog",
+            "name": "Walter"
+        }
+    ]
+}

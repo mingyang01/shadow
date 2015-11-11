@@ -1,0 +1,73 @@
+doctype html
+html
+  head
+    title 通用内容平台
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel="shortcut icon",href="/images/favicon.ico",type="image/x-icon")
+    script(type='text/javascript', src="/vendor/jquery/dist/jquery.min.js")
+    script(type='text/javascript', src="/vendor/bootstrap/dist/js/bootstrap.min.js")
+    style.
+      #image-header{
+        margin:0 10px 0 10px;
+        border-radius:50%;
+      }
+  body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') 
+            | Smart
+        // Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/source/index') 数据源
+            li
+              a(href='/template/index') 数据管理
+            li
+              a(href='/template/doc') 参考文档
+            li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                  | 接口文档
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='http://interfaces.meiliworks.com/show/interface?id=1759&work_id=11' target="_blank") 获取内容
+                  li.divider(role='separator')
+          ul.nav.navbar-nav.navbar-right
+            if locals.user
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false',style="padding:5px 20px 5px 20px;")
+                  img#image-header(style="width:40px;height:40px;margin-right:20px;",src="#{locals.user.avatar_origin}")
+                  | #{locals.user.name}
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='http://speed.meilishuo.com/user' target="_blank") 个人信息
+                  li.divider(role='separator')
+                  li
+                    a(href='http://speed.meilishuo.com/time/time_manage' target="_blank") 我的日程
+                  li.divider(role='separator')
+                  li
+                    a(href='/logout') 退出
+            li
+              a(href='/logout') 退出登陆
+          ul.nav.navbar-nav.navbar-right
+            li
+              p(style="height:55px;overflow:hidden;")
+                embed(wmode='transparent', src='http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.swf', quality='high', bgcolor='#ffffff', width='160', height='70', name='honehoneclock', align='center', allowscriptaccess='always', type='application/x-shockwave-flash', pluginspage='http://www.macromedia.com/go/getflashplayer', style='line-height: 1.5;')
+
+          
+    block content
+  footer
+    .text-center
+      p Powered by: meilishuo</p>
+      p Contact information: 
+        a(href="www.meilishuo.com") www.meilishuo.com
+  script.

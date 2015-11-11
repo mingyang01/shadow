@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  script(src="/vendor/shadow.js")
+
+  .container
+    .row
+      .col-md-6
+        button#submit.tiny Submit (console.log)
+        button#restore.secondary.tiny Restore to Default
+        span#valid_indicator.label
+
+    .row
+      #editor.col-md-6
+
+  script(src="/js/editor.js")

@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href='/vendor/jsoneditor/dist/jsoneditor.min.css')
+  link(rel='stylesheet', href="/css/shadow.css") 
+  link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+  script(src="/vendor/moment/min/moment.min.js")
+  script(src="/vendor/sortable.js")
+  script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+  script(src="/vendor/shadow.js")
+  script(src="/js/plugins/datetimepicker.js")
+  script(src="/vendor/jsoneditor/dist/jsoneditor.min.js")
+  script(src="/vendor/ace/ace.js")
+
+  .container-fluid
+    .row
+      .col-md-12
+        h3 JSON Input
+          button#update-json.btn.btn-default.btn-sm.pull-right
+            i.glyphicon.glyphicon-refresh
+        #jsonEditor(style="min-height:500px;font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;")
+      .col-md-7
+        h3 Schema
+          button#update-schema.btn.btn-default.btn-sm.pull-right
+            i.glyphicon.glyphicon-refresh
+        #editor(style="min-height:500px;font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;")  
+        h3 JSON Output
+          button#update-form.btn.btn-default.btn-sm.pull-right
+            i.glyphicon.glyphicon-refresh
+        #model(style="height:500px;font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;")
+      .col-md-5
+        h3 Preview
+          button#full-screen.btn.btn-default.pull-right.btn-sm
+            i.glyphicon.glyphicon-fullscreen
+        #preview
+  script.
+    var tpl = "#{schema}"
+  script(src="/js/schema.js")

@@ -1,0 +1,34 @@
+{
+    "title": "活动页",
+    "type": "array",
+    "format": "tab",   
+    "options": {
+        "disable_collapse": true
+    },
+    "items": {
+
+        "type": "object",
+        "headerTemplate": "商品{{ i1 }} - {{ self.twitter }}",
+        "properties": {
+            "twitter": {
+                "type": "string"
+            },
+            "image": {
+                "type": "string",
+                "links": [{
+                    "href": "{{self}}",
+                    "mediaType": "image"
+                }]
+            },
+            "link": {
+                "type": "string"
+            }
+
+        }
+
+    },
+    "default": [{
+        "twitter": "3766528669",
+        "image": "http://d04.res.meilishuo.net/pic/_o/23/3b/5c7d54707e25e57578a0d372b02e_640_960.ch.jpg_cfc58b1e_s7_450_680.jpg"
+    }]
+}

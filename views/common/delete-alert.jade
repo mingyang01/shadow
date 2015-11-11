@@ -1,0 +1,14 @@
+#comon-delete-alert.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type="button", data-dismiss="modal", aria-hidden="true")
+          | &#215;
+        h4.modal-title
+          | 温馨提示
+      .modal-body#delete-message
+      .modal-footer
+        button.btn.btn-default(type="button", data-dismiss="modal")
+          | 关闭
+        button#delete-sure-btn.btn.btn-primary(type="button", data-dismiss="modal")
+          | 确定

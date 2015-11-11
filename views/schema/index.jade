@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href='/vendor/jsoneditor/dist/jsoneditor.min.css')
+  link(rel='stylesheet', href="/css/shadow.css") 
+  link(rel='stylesheet', href="/vendor/select2/dist/css/select2.min.css")
+  link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+  script(src="/vendor/moment/min/moment.min.js")
+  script(src="/vendor/sortable.js")
+  script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+  script(type='text/javascript', src="/vendor/select2/dist/js/select2.min.js")
+  script(src="/vendor/shadow.js")
+  script(src="/js/plugins/datetimepicker.js")
+  script(src="/js/plugins/gotoTop.js")
+  script(src="/vendor/jsoneditor/dist/jsoneditor.min.js")
+  script(src="/vendor/ace/ace.js")
+  style.
+    #main{min-height:750px;}
+    a.backToTop{width:30px; height:30px; background:#eaeaea url(/images/top.gif) no-repeat -66px -15px; text-indent:-999em}
+    a.backToTop:hover{background-position:-66px -15px;}
+  .container-fluid#main
+    .row
+      .col-md-12
+        ol.breadcrumb
+          li
+            a(href="#")
+              | home
+          li.active
+            | 编辑校验规则 
+      .col-md-7#schema-wramp
+        h3.well.clearfix
+          .col-md-3
+            | 校验规则
+          .col-md-3
+            select#theme.form-control(style="height:26px;")
+              option(value="clouds")
+                | default
+              option(value="clouds")
+                | clouds
+              option(value="monokai")
+                | monokai
+          .col-md-6
+            button#save-schema.btn.btn-success.btn-sm.pull-right
+              | 保存
+            button#full-screen.btn.btn-default.btn-sm.pull-right(style="margin-right:10px;")
+              i.glyphicon.glyphicon-resize-vertical
+            button#update-schema.btn.btn-default.btn-sm.pull-right(style="margin-right:10px;")
+              i.glyphicon.glyphicon-refresh
+            button#hide-btn.btn.btn-default.btn-sm.pull-right(style="margin-right:10px;display:none;")
+              i.glyphicon.glyphicon-menu-down
+        #editor(style="min-height:500px;border:1px solid #ccc; font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;") 
+      .col-md-5#preview-wramp
+        h3.well 
+         | 模板预览
+        #preview
+      include ../common/alert
+  script.
+    var code = "#{code}"
+    $(".name-select2").select2();
+  script(src="/js/schema/index.js")

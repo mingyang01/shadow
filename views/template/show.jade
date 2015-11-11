@@ -1,0 +1,57 @@
+extends ../common/layout-for-show
+
+block content
+	link(rel='stylesheet', href="/css/shadow.css") 
+	link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+	script(src="/vendor/moment/min/moment.min.js")
+	script(src="/vendor/sortable.js")
+	script(src="/vendor/shadow.js")
+	script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+	script(src="/js/plugins/datetimepicker.js")
+	script(src="/js/plugins/imgAjaxfileUp.js")
+	style.
+		.btn-success{
+			border:1px solid #FF6666;
+			background-color:#FF6666 !important;
+		}
+		.btn-success:hover{
+			border:1px solid #FF6666;
+			background-color:#FF6666 !important;
+		}
+		.btn-success:active{
+			border:1px solid #FF6666;
+			background-color:#FF6666 !important;
+		}
+	.container
+		.row
+			.col-md-12
+				ol.breadcrumb
+					li
+						a(href="#")
+							| home
+					li.active
+						| 模板展示
+			.col-md-12#preview-save-alert(style="margin-top:30px;display:none;")
+				.alert.alert-info
+						| 正在为您自动实时保存预览数据,如果确认保存,则会清空预览数据。
+			.col-md-12
+				#preview
+	#preview-alert.modal.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type="button", data-dismiss="modal", aria-hidden="true")
+						| &#215;
+					h4.modal-title
+						| 温馨提示
+				.modal-body#alert-message
+				.modal-footer
+					button.btn.btn-default(type="button", data-dismiss="modal")
+						| 关闭
+					button#save-sure-btn.btn.btn-primary(type="button", data-dismiss="modal")
+						| 确定
+	script.
+		var code =  "#{code}"
+		var _id =  "#{_id}"
+		var previewFlag =  "#{previewFlag}"
+	script(src = "/js/template/show.js")

@@ -1,0 +1,133 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href="/js/plugins/switch-btn/css/bootstrap3/bootstrap-switch.min.css")
+  script(src="/js/source/jqPaginator.js")
+  script(src="/vendor/ace/ace.js")
+  script(src="/js/plugins/switch-btn/js/bootstrap-switch.min.js")
+  style.
+    .main{
+      min-height:400px;
+    }
+    #edit-btn{
+      color:#fff;
+    }
+  .container
+    .row
+      .col-md-12
+        ol.breadcrumb
+          li
+            a(href="#")
+              | home
+          li.active
+            | 创建数据源
+      .col-md-12
+        .well
+          .form-inline
+            input#condition.form-control(placeholder="请输入.." style="margin-right:20px;", value="#{condition}" )
+            button#search-btn.btn.btn-success
+              | 查询
+            button#add-btn.btn.btn-default.pull-right(type="button",data-toggle="modal",data-target="#myModal")
+              | 添加
+      .col-md-12
+        .alert.alert-info
+          | 操作说明  操作中的三个按钮，依次为删除本条信息，编辑修改本信息，编辑校验规则
+      .col-md-12.hide
+        input#data_id(value="1")
+      .col-md-12.main
+        table.table.table-bordered.table-striped
+          tbody
+            tr
+              th.col-md-2
+                | 名称
+              th.col-md-2
+                | 描述
+              th.col-md-1
+                | 类型
+              th.col-md-2
+                | 时间
+              th.col-md-2
+                | 授权人
+              th.col-md-1
+                | 操作人
+              th.col-md-2.text-center
+                | 操 作
+            tr
+            each items,i in data
+              tr
+                td
+                 | #{items.name}
+                td
+                 | #{items.description}
+                if items.multiple==1
+                  td
+                    | 单期
+                else
+                  td
+                    | 多期
+                td
+                 | #{items.unix}
+                td.hide
+                 | #{items.power}
+                td
+                 | #{items.power_show}
+                td
+                 | #{items.op_user}
+                td.hide
+                 | #{items.data}
+                td.text-center
+                  button.delete-btn.btn.btn-danger.btn-sm(data-toggle="tooltip", data-placement="left",title="删除",style="margin-right:10px",data-code="#{items.code}")
+                    i.glyphicon.glyphicon-trash
+                  button.edit-btn.btn.btn-success.btn-sm(data-toggle="tooltip",data-placement="top" ,title="编辑",data-code="#{items.code}",style="margin-right:5px")
+                    i.glyphicon.glyphicon-pencil
+                  a.btn.btn-info.btn-sm(data-toggle="tooltip",data-placement="top" ,title="校验规则",href="/schema/index?code=#{items.code}",style="margin-right:5px")
+                    i.glyphicon.glyphicon-edit
+                  button.share-btn.btn.btn-primary.btn-sm(data-toggle="tooltip",title="分享",data-placement="right" ,data-code="#{items.code}",style="margin-right:5px")
+                    i.glyphicon.glyphicon-share
+      .col-md-12.text-center
+        ul#pagination1.pagination
+    #myModal.modal.fade.bs-example-modal-lg(tabindex="-1", sytle="display:none", role="dialog", aria-labelledby="myModalLabel")
+      .modal-dialog.modal-lg(role="document")
+        .modal-content
+          .modal-header
+            button.close(type="button", data-dismiss="modal", aria-label="Close")
+              span(aria-hidden="true") &#215;
+            h4#myModalLabel.modal-title 添加
+          .modal-body.clearfix
+            .col-md-6
+              label(for="name") 名 称
+              input#name.form-control(type="text",placeholder="请输入名称")
+            .col-md-6
+              label.control-label(for="desc") 描 述
+              input#desc.form-control(type="text", placeholder="请输入描述")
+            .col-md-6(style="margin-top:20px;")
+              label.control-label(for="power") 授权人
+              input#power.form-control(type="text", placeholder="邮箱前缀，多个人用英文逗号隔开")
+            .col-sm-6(style="margin-top:20px;")
+              h3.h5 类型为（单期？多期？）
+              input#switch-state.multiple-btn(type="checkbox", name="multiple",checked,data-switch-get="state")
+            hr
+            .col-md-12(style="margin-top:20px;")
+              label.control-label(for="editor") 编辑示例json  
+              #editor(style="min-height:500px;border:1px solid #ccc; font: 18px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;")
+          .modal-footer
+            button.btn.btn-default(type="button", data-dismiss="modal") 关闭
+            button#save-btn.btn.btn-primary(type="button") 保存
+    include ../common/alert
+    include ../common/delete-alert
+  script.
+    var total = "#{total}";
+    var page = "#{page}";
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+      $(".multiple-btn").bootstrapSwitch();
+      $(".multiple-btn").bootstrapSwitch('onText','单期');
+      $(".multiple-btn").bootstrapSwitch('offText','多期');
+      $(".multiple-btn").bootstrapSwitch('labelWidth','50');
+      $(".multiple-btn").bootstrapSwitch('offColor','info');
+    })
+  script(src="/js/source/source.js")
+
+     
+        
+    

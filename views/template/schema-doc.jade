@@ -1,0 +1,188 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      h1 JSON 模式（Schema）
+      p JSON 模式是一种基于 JSON 格式定义 JSON 数据结构的规范。它被写在 IETF 草案下并于 2011 年到期。JSON 模式：
+      ul
+        li 描述现有数据格式。
+        li 干净的人类和机器可读的文档。
+        li 完整的结构验证，有利于自动化测试。
+        li 完整的结构验证，可用于验证客户端提交的数据。
+      h2#ac9030f097af39a0b65775fd86a88679 JSON 模式验证库
+      p 目前有好几个验证器可用于不同的编程语言。但是目前最完整和兼容 JSON 模式的验证器是 JSV。
+      table.table.table-bordered.table-striped
+        tbody
+          tr
+            th
+              | 语言
+            th
+              | 程序库
+          tr
+            td
+              | C
+            td
+              | WJElement (LGPLv3)
+          tr
+            td
+              | Java
+            td
+              | json-schema-validator (LGPLv3)
+          tr
+            td
+              | .NET
+            td
+              | Json.NET (MIT)
+          tr
+            td
+              | ActionScript 3
+            td
+              | Frigga (MIT)
+          tr
+            td
+              | Haskell
+            td
+              | aeson-schema (MIT)
+          tr
+            td
+              | Python
+            td
+              | Jsonschema
+          tr
+            td
+              | Ruby
+            td
+              | autoparse (ASL 2.0); ruby-jsonschema (MIT)
+          tr
+            td
+              | PHP
+            td
+              | php-json-schema (MIT). json-schema (Berkeley)
+          tr
+            td
+              | JavaScript
+            td
+              | Orderly (BSD); JSV; json-schema; Matic (MIT); Dojo; Persevere (modified
+              | BSD or AFL 2.0); schema.js.
+      h2#ff6b1a2ecfb07bf28e8150c7961ca73a JSON 模式示例
+      p 下面是一个基本的 JSON 模式，其中涵盖了一个经典的产品目录说明：
+      pre.
+        {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "title": "Product",
+            "description": "A product from Acme's catalog",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "The unique identifier for a product",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Name of the product",
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true
+                }
+            },
+            "required": ["id", "name", "price"]
+        }
+      p 我们来看一下可以用于这一模式中的各种重要关键字：
+      table.table.table-bordered.table-striped
+        tbody
+          tr
+            th
+              | 关键字
+            th
+              | 描述
+          tr
+            td
+              | $schema
+            td
+              | $schema 关键字状态，表示这个模式与 v4 规范草案书写一致。
+          tr
+            td
+              | title
+            td
+              | 用它给我们的模式提供了标题。
+          tr
+            td
+              | description
+            td
+              | 关于模式的描述。
+          tr
+            td
+              | type
+            td
+              | type 关键字在我们的 JSON 数据上定义了第一个约束：必须是一个 JSON 对象。
+          tr
+            td
+              | properties
+            td
+              | 定义各种键和他们的值类型，以及用于 JSON 文件中的最小值和最大值。
+          tr
+            td
+              | required
+            td
+              | 存放必要属性列表。
+          tr
+            td
+              | minimum
+            td
+              | 给值设置的约束条件，表示可以接受的最小值。
+          tr
+            td
+              | exclusiveMinimum
+            td
+              | 如果存在 "exclusiveMinimum" 并且具有布尔值 true，如果它严格意义上大于 "minimum" 的值则实例有效。
+          tr
+            td
+              | maximum
+            td
+              | 给值设置的约束条件，表示可以接受的最大值。
+          tr
+            td
+              | exclusiveMaximum
+            td
+              | 如果存在 "exclusiveMinimum" 并且具有布尔值 true，如果它严格意义上小于 "maximum" 的值则实例有效。
+          tr
+            td
+              | multipleOf
+            td
+              | 如果通过这个关键字的值分割实例的结果是一个数字则表示紧靠 "multipleOf" 的数字实例是有效的。
+          tr
+            td
+              | maxLength
+            td
+              | 字符串实例字符的最大长度数值。
+          tr
+            td
+              | minLength
+            td
+              | 字符串实例字符的最小长度数值。
+          tr
+            td
+              | pattern
+            td
+              | 如果正则表达式匹配实例成功则字符串实例被认为是有效的。
+      p
+        | 可以在 
+        a(rel='nofollow', href='http://json-schema.org/latest/json-schema-validation.html')
+        a(rel='nofollow', href='http://json-schema.org') http://json-schema.org
+        |  上检出可用于定义 JSON 模式的完整关键字列表。上面的模式可用于测试下面给出的 JSON 代码的有效性：
+      pre.
+        [
+            {
+                "id": 2,
+                "name": "An ice sculpture",
+                "price": 12.50,
+            },
+            {
+                "id": 3,
+                "name": "A blue mouse",
+                "price": 25.50,
+            }
+        ]

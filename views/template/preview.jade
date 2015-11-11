@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  link(rel='stylesheet', href="/css/shadow.css") 
+  link(rel='stylesheet', href="/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css")
+  script(src="/vendor/moment/min/moment.min.js")
+  script(src="/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js")
+  script(src="/vendor/sortable.js")
+  script(src="/vendor/shadow.js")
+  script(src="/js/plugins/datetimepicker.js")
+
+  .container
+    .row
+      .col-md-12
+        #preview
+  script.
+    var tpl = "#{schema}",
+        starting = "#{JSON.stringify(json)}";
+  script(src="/js/template/preview.js")

@@ -1,0 +1,108 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/vendor/jsoneditor/dist/jsoneditor.min.css')
+  script(src="/vendor/shadow.js")
+  script(src="/vendor/jsoneditor/dist/jsoneditor.min.js")
+  script(src="/vendor/ace/ace.js")
+  h1 JSON Editor Upload Example
+  #editor_holder
+  button#submit Submit (console.log)
+  script.
+    // Specify theme
+    Shadow.defaults.options.theme = 'html';
+    // Specify upload handler
+    Shadow.defaults.options.upload = function(type, file, cbs) {
+    if (type === 'root.upload_fail') cbs.failure('Upload failed');
+    else {
+    var tick = 0;
+    var tickFunction = function() {
+    tick += 1;
+    console.log('progress: ' + tick);
+    if (tick < 100) {
+    cbs.updateProgress(tick);
+    window.setTimeout(tickFunction, 50)
+    } else if (tick == 100) {
+    cbs.updateProgress();
+    window.setTimeout(tickFunction, 500)
+    } else {
+    cbs.success('http://www.example.com/images/' + file.name);
+    }
+    };
+    window.setTimeout(tickFunction)
+    }
+    };
+    // Initialize the editor with a JSON schema
+    var editor = new Shadow(document.getElementById('editor_holder'),{
+    schema: {
+    type: "object",
+    title: "Image",
+    properties: {
+    upload_default: {
+    type: "string",
+    format: "url",
+    options: {
+    upload: true
+    },
+    "links": [
+    {
+    "href": "{{self}}"
+    }
+    ]
+    },
+    upload_custom_link: {
+    type: "string",
+    format: "url",
+    options: {
+    upload: true
+    },
+    "links": [
+    {
+    "href": "{{self}}",
+    "rel": "view"
+    }
+    ]
+    },
+    upload_readonly: {
+    readonly: true,
+    type: "string",
+    format: "url",
+    options: {
+    upload: true
+    },
+    "links": [
+    {
+    "href": "{{self}}"
+    }
+    ]
+    },
+    upload_fail: {
+    type: "string",
+    format: "url",
+    options: {
+    upload: true
+    },
+    "links": [
+    {
+    "href": "{{self}}"
+    }
+    ]
+    },
+    name: {
+    type: "string"
+    }
+    }
+    }
+    });
+    editor.setValue({
+    upload_default: "",
+    upload_custom_link: "",
+    upload_readonly: "http://www.example.com/images/image.jpg",
+    upload_fail: "",
+    name: ""
+    });
+    // Hook up the submit button to log to the console
+    document.getElementById('submit').addEventListener('click',function() {
+    // Get the value from the editor
+    console.log(editor.getValue());
+    });

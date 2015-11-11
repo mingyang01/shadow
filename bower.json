@@ -1,0 +1,19 @@
+{
+  "name": "shadow",
+  "version": "1.0.0",
+  "authors": [
+    "chaoliu <chaoliu@meilishuo.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ace": "~1.2.0"
+  }
+}
